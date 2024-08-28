@@ -1,3 +1,7 @@
+--INTEGRANTES DEL GRUPO 
+--EDILBERTO HUANACO BALVIN
+--FERNANDO JOSE AJHUACHO CAHUASIRI
+--SAMUEL HUANCA CHAMBI 
 -- Verificar si la base de datos ya existe
 IF DB_ID('FlightManagement3') IS NULL
 BEGIN
@@ -6,11 +10,11 @@ BEGIN
 END
 GO
 
--- Uso de la base de datos reci閚 creada
+-- Uso de la base de datos reci茅n creada
 USE FlightManagement3;
 GO
 
--- Creaci髇 de la tabla Country (Pa韘)
+-- Creaci贸n de la tabla Country (Pa铆s)
 CREATE TABLE Country (
     ID INT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL  -- NOT NULL garantiza la integridad de datos
@@ -23,7 +27,7 @@ INSERT INTO Country (ID, Name) VALUES (3, 'Mexico');
 INSERT INTO Country (ID, Name) VALUES (4, 'Brazil');
 INSERT INTO Country (ID, Name) VALUES (5, 'United Kingdom');
 
--- Creaci髇 de la tabla City (Ciudad)
+-- Creaci贸n de la tabla City (Ciudad)
 CREATE TABLE City (
     ID INT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
@@ -38,7 +42,7 @@ INSERT INTO City (ID, Name, Country_ID) VALUES (3, 'Mexico City', 3);
 INSERT INTO City (ID, Name, Country_ID) VALUES (4, 'Sao Paulo', 4);
 INSERT INTO City (ID, Name, Country_ID) VALUES (5, 'London', 5);
 
--- Creaci髇 de la tabla Plane Model
+-- Creaci贸n de la tabla Plane Model
 CREATE TABLE PlaneModel (
     ID INT PRIMARY KEY,
     Description VARCHAR(255) NOT NULL,
@@ -52,7 +56,7 @@ INSERT INTO PlaneModel (ID, Description) VALUES (3, 'Boeing 737');
 INSERT INTO PlaneModel (ID, Description) VALUES (4, 'Embraer E190');
 INSERT INTO PlaneModel (ID, Description) VALUES (5, 'Airbus A380');
 
--- Creaci髇 de la tabla FlightCategory (Categor韆 de Vuelo)
+-- Creaci贸n de la tabla FlightCategory (Categor铆a de Vuelo)
 CREATE TABLE FlightCategory (
     ID INT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
@@ -67,7 +71,7 @@ INSERT INTO FlightCategory (ID, Name, Description, PriceMultiplier) VALUES (3, '
 INSERT INTO FlightCategory (ID, Name, Description, PriceMultiplier) VALUES (4, 'Premium Economy', 'Enhanced economy class', 1.25);
 INSERT INTO FlightCategory (ID, Name, Description, PriceMultiplier) VALUES (5, 'Economy Plus', 'Extra legroom economy', 1.15);
 
--- Creaci髇 de la tabla Airport
+-- Creaci贸n de la tabla Airport
 CREATE TABLE Airport (
     ID INT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
@@ -82,7 +86,7 @@ INSERT INTO Airport (ID, Name, City_ID) VALUES (3, 'Benito Juarez', 3);
 INSERT INTO Airport (ID, Name, City_ID) VALUES (4, 'Guarulhos', 4);
 INSERT INTO Airport (ID, Name, City_ID) VALUES (5, 'Heathrow', 5);
 
--- Creaci髇 de la tabla Flight Number
+-- Creaci贸n de la tabla Flight Number
 CREATE TABLE FlightNumber (
     ID INT PRIMARY KEY,
     Departure_Time TIME NOT NULL,
@@ -109,7 +113,7 @@ VALUES (4, '22:00', 'Night Flight', 'Domestic', 'Air Canada', 2, 3, 4);
 INSERT INTO FlightNumber (ID, Departure_Time, Description, Type, Airline, Start_Airport_ID, Goal_Airport_ID, Plane_Model_ID)
 VALUES (5, '06:00', 'Early Morning Flight', 'International', 'LATAM', 4, 5, 5);
 
--- Creaci髇 de la tabla Airplane
+-- Creaci贸n de la tabla Airplane
 CREATE TABLE Airplane (
     Registration_Number INT PRIMARY KEY,
     Begin_of_Operation DATE,
@@ -130,7 +134,7 @@ VALUES (104, '2018-08-15', 'Under Maintenance', 4);
 INSERT INTO Airplane (Registration_Number, Begin_of_Operation, Status, Plane_Model_ID)
 VALUES (105, '2020-02-05', 'Active', 5);
 
--- Creaci髇 de la tabla Seat
+-- Creaci贸n de la tabla Seat
 CREATE TABLE Seat (
     ID INT PRIMARY KEY,
     Size VARCHAR(50),
@@ -152,7 +156,7 @@ VALUES (4, 'Business', 12, 'Window', 3);
 INSERT INTO Seat (ID, Size, Number, Location, Plane_Model_ID)
 VALUES (5, 'First Class', 1, 'Middle', 4);
 
--- Creaci髇 de la tabla Flight
+-- Creaci贸n de la tabla Flight
 CREATE TABLE Flight (
     ID INT PRIMARY KEY,
     Boarding_Time TIME NOT NULL,
@@ -177,7 +181,7 @@ VALUES (4, '21:30', '2024-09-01', 'D4', 'Check-In 4', 4, 4);
 INSERT INTO Flight (ID, Boarding_Time, Flight_Date, Gate, Check_In_Counter, Flight_Number_ID, Flight_Category_ID)
 VALUES (5, '05:30', '2024-09-02', 'E5', 'Check-In 5', 5, 5);
 
--- Creaci髇 de la tabla Available Seat
+-- Creaci贸n de la tabla Available Seat
 CREATE TABLE AvailableSeat (
     ID INT PRIMARY KEY,
     Flight_ID INT,
@@ -198,7 +202,7 @@ VALUES (4, 3, 4);
 INSERT INTO AvailableSeat (ID, Flight_ID, Seat_ID)
 VALUES (5, 4, 5);
 
--- Creaci髇 de la tabla Customer
+-- Creaci贸n de la tabla Customer
 CREATE TABLE Customer (
     ID INT PRIMARY KEY,
     Date_of_Birth DATE NOT NULL,
@@ -217,7 +221,7 @@ VALUES (4, '1988-02-18', 'Emily Davis');
 INSERT INTO Customer (ID, Date_of_Birth, Name)
 VALUES (5, '1995-11-12', 'Samantha Brown');
 
--- Creaci髇 de la tabla Documento
+-- Creaci贸n de la tabla Documento
 CREATE TABLE Documento (
     ID INT PRIMARY KEY,
     Number VARCHAR(50) NOT NULL,
@@ -238,7 +242,7 @@ VALUES (4, 'JKL44556', 'Passport', 4);
 INSERT INTO Documento (ID, Number, Type, Customer_ID)
 VALUES (5, 'MNO78901', 'Driver License', 5);
 
--- Creaci髇 de la tabla Ticket
+-- Creaci贸n de la tabla Ticket
 CREATE TABLE Ticket (
     Ticketing_Code INT PRIMARY KEY,
     Number INT NOT NULL,
@@ -258,7 +262,7 @@ VALUES (1004, 4, 4);
 INSERT INTO Ticket (Ticketing_Code, Number, Customer_ID)
 VALUES (1005, 5, 5);
 
--- Creaci髇 de la tabla Coupon
+-- Creaci贸n de la tabla Coupon
 CREATE TABLE Coupon (
     ID INT PRIMARY KEY,
     Date_of_Redemption DATE,
@@ -285,7 +289,7 @@ VALUES (4, '2024-09-01', 'Economy', 0, 'Non-Veg', 1004, 4, 4);
 INSERT INTO Coupon (ID, Date_of_Redemption, Class, Standby, Meal_Code, Ticketing_Code, Flight_ID, Available_Seat_ID)
 VALUES (5, '2024-09-02', 'Premium Economy', 1, 'Veg', 1005, 5, 5);
 
--- Creaci髇 de la tabla Frequent Flyer Card
+-- Creaci贸n de la tabla Frequent Flyer Card
 CREATE TABLE FrequentFlyerCard (
     FFC_Number INT PRIMARY KEY,
     Miles INT CHECK (Miles >= 0), -- CHECK garantiza que los puntos de millas no sean negativos
@@ -306,7 +310,7 @@ VALUES (2004, 15000, 'Non-Veg', 4);
 INSERT INTO FrequentFlyerCard (FFC_Number, Miles, Meal_Code, Customer_ID)
 VALUES (2005, 3000, 'Veg', 5);
 
--- Creaci髇 de la tabla Pieces of Luggage
+-- Creaci贸n de la tabla Pieces of Luggage
 CREATE TABLE PiecesOfLuggage (
     ID INT PRIMARY KEY,
     Number INT CHECK (Number > 0), -- CHECK garantiza que haya al menos una pieza de equipaje
@@ -327,12 +331,12 @@ VALUES (4, 2, 18.4, 4);
 INSERT INTO PiecesOfLuggage (ID, Number, Weight, Coupon_ID)
 VALUES (5, 1, 10.5, 5);
 
--- Creaci髇 de 韓dices para mejorar el rendimiento
+-- Creaci贸n de 铆ndices para mejorar el rendimiento
 CREATE INDEX idx_Airport_Name ON Airport(Name);
 CREATE INDEX idx_Flight_Date ON Flight(Flight_Date);
 CREATE INDEX idx_Customer_Name ON Customer(Name);
 
--- Transacci髇 de Ejemplo
+-- Transacci贸n de Ejemplo
 BEGIN TRANSACTION;
     INSERT INTO Country (ID, Name) VALUES (6, 'Australia');
     INSERT INTO City (ID, Name, Country_ID) VALUES (6, 'Sydney', 6);
